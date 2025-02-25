@@ -41,6 +41,8 @@ class DataSiswagResource extends Resource
                 TextColumn::make('nama_kelas')
                     ->label('Nama Kelas')
                     ->sortable(),
+                    TextColumn::make('files')
+                    ->label('Files')
             ])
             ->filters([
                 //
