@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class DataSiswa extends Model
 {
     use HasFactory;
-    protected $table = 'datasiswa';
-    protected $fillable = ['nama_kelas', 'files'];
+    protected $table = 'data-siswa';
+    protected $fillable = ['data-kelas', 'files'];
 
     protected $casts = [
         'files' => 'array',
