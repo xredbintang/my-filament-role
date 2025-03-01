@@ -80,10 +80,10 @@ return new class extends Migration
             $table->string('fasilitas_gambar');
             $table->timestamps();
         });
-        Schema::create('data_siswa', function (Blueprint $table) {
+        Schema::create('data_murid', function (Blueprint $table) {
             $table->id();
             $table->string('data_kelas');
-            $table->string('files');
+            $table->string('data_files');
             $table->timestamps();
         });
         Schema::create('akun_siswa', function (Blueprint $table) {

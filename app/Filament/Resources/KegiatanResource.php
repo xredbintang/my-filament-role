@@ -6,9 +6,15 @@ use App\Filament\Resources\KegiatanResource\Pages;
 use App\Filament\Resources\KegiatanResource\RelationManagers;
 use App\Models\Kegiatan;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -17,14 +23,22 @@ class KegiatanResource extends Resource
 {
     protected static ?string $model = Kegiatan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?int $navigationSort = 9;
+    protected static ?string $navigationIcon = 'heroicon-o-camera';
+    protected static ?string $navigationLabel = 'Kegiatan Sekolah';
+
+    protected static ?string $navigationGroup = 'Galeri';
+    protected static ?int $navigationSort = 11;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Section::make('Kegiatan')
+                ->schema([
+                    TextInput::make('kegiatan_nama')->required()->label('Nama kegiatan'),
+                    FileUpload::make('kegiatan_gambar')->directory('kegiatan_img')->required()->label('Gambar kegiatan'),
+                    Textarea::make('kegiatan_deskripsi')->required()->label('Deskripsi kegiatan'),
+                ]),
             ]);
     }
 
@@ -32,7 +46,9 @@ class KegiatanResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('kegiatan_nama')->limit(20)->searchable()->sortable(),
+                ImageColumn::make('kegiatan_gambar'),
+                TextColumn::make('kegiatan_deskripsi')->limit(20)->searchable()->sortable(),
             ])
             ->filters([
                 //

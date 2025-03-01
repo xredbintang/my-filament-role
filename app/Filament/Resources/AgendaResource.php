@@ -41,8 +41,8 @@ class AgendaResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('semester_pertama')->label('Semester 1'),
-                TextColumn::make('semester_kedua')->label('Semester 2')
+                TextColumn::make('semester_pertama')->label('Semester 1')->searchable()->sortable(),
+                TextColumn::make('semester_kedua')->label('Semester 2')->searchable()->sortable()
             ])
             ->filters([
                 //

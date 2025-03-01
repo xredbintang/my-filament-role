@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DataSiswaResource\Pages;
-use App\Filament\Resources\DataSiswaResource\RelationManagers;
+use App\Filament\Resources\DataMuridResource\Pages;
+use App\Filament\Resources\DataMuridResource\RelationManagers;
+use App\Models\DataMurid;
 use App\Models\DataSiswa;
+use App\Models\Guru;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,12 +15,14 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class DataSiswaResource extends Resource
+class DataMuridResource extends Resource
 {
-    protected static ?string $model = DataSiswa::class;
+    protected static ?string $model = DataMurid::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    
+    protected static ?string $navigationIcon = 'heroicon-o-document-duplicate';
+    protected static ?string $navigationLabel = 'Data Murid Pdf';
+    protected static ?string $navigationGroup = 'Data Murid';
+    protected static ?int $navigationSort = 13;
 
     public static function form(Form $form): Form
     {
@@ -57,9 +61,9 @@ class DataSiswaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDataSiswas::route('/'),
-            'create' => Pages\CreateDataSiswa::route('/create'),
-            'edit' => Pages\EditDataSiswa::route('/{record}/edit'),
+            'index' => Pages\ListDataMurids::route('/'),
+            'create' => Pages\CreateDataMurid::route('/create'),
+            'edit' => Pages\EditDataMurid::route('/{record}/edit'),
         ];
     }
 }

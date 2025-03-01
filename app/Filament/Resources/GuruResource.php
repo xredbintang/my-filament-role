@@ -45,9 +45,9 @@ class GuruResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('guru_nama')->label('Nama'),
+                TextColumn::make('guru_nama')->label('Nama')->searchable()->sortable(),
                 ImageColumn::make('guru_gambar')->label('Gambar'),
-                TextColumn::make('guru_jabatan')->label('Jabatan'),
+                TextColumn::make('guru_jabatan')->label('Jabatan')->searchable()->sortable(),
             ])
             ->filters([
                 //
