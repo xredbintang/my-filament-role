@@ -13,6 +13,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -21,14 +22,16 @@ class TentangKamiResource extends Resource
 {
     protected static ?string $model = TentangKami::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-identification';
+    protected static ?string $navigationGroup = 'Beranda';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 FileUpload::make('gambar')->image()->directory('img')->preserveFilenames()->image()->required()->imageEditor(),
-                RichEditor::make('deskripsi')->required()->extraAttributes(['class' => 'prose'])
+                RichEditor::make('deskripsi')->required()
             ]);
     }
 
@@ -37,6 +40,7 @@ class TentangKamiResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('gambar'),
+                TextColumn::make('deskripsi')->limit(40)->sortable()->searchable()
                 
             ])
             ->filters([

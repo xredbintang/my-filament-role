@@ -93,6 +93,13 @@ return new class extends Migration
             $table->string('password');
             $table->timestamps();
         });
+        Schema::create('visi_misi', function (Blueprint $table) {
+            $table->id();
+            $table->text('visi');
+            $table->text('misi');
+            $table->text('tujuan');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -112,5 +119,6 @@ return new class extends Migration
         Schema::dropIfExists('fasilitas');
         Schema::dropIfExists('data_siswa');
         Schema::dropIfExists('akun_siswa');
+        Schema::dropIfExists('visi_misi');
     }
 };

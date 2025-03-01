@@ -9,6 +9,7 @@ use App\Models\KategoriBerita;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -24,8 +25,11 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class BeritaResource extends Resource
 {
     protected static ?string $model = Berita::class;
-    protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+    protected static ?string $navigationLabel = 'Berita Terkini';
+
     protected static ?string $navigationGroup = 'Berita';
+    protected static ?int $navigationSort = 6;
 
     public static function form(Form $form): Form
     {
@@ -42,15 +46,12 @@ class BeritaResource extends Resource
                             ->options(KategoriBerita::all()->pluck('kategori_nama', 'id'))
                             ->searchable()
                             ->required(),
-                        DatePicker::make('berita_tanggal')
-                            ->label('Tanggal Berita')
-                            ->required(),
                         FileUpload::make('berita_gambar')
                             ->label('Gambar Berita')
                             ->image()
                             ->directory('news_img')
                             ->required(),
-                        Textarea::make('berita_deskripsi')
+                        RichEditor::make('berita_deskripsi')
                             ->label('Deskripsi Berita')
                             ->required(),
                     ]),
@@ -61,17 +62,17 @@ class BeritaResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable(),
-                TextColumn::make('berita_judul')->label('Judul')->sortable()->searchable(),
-                TextColumn::make('kategori.nama')->label('Kategori')->sortable()->searchable(),
+                TextColumn::make('berita_judul')->label('Judul')->limit(20)->sortable()->searchable(),
+                TextColumn::make('kategori.kategori_nama')->label('Kategori')->sortable()->searchable(),
+                TextColumn::make('berita_deskripsi')->limit(20)->label('Deskripsi')->sortable()->searchable(),
                 TextColumn::make('berita_tanggal')->label('Tanggal')->dateTime(),
-                TextColumn::make('created_at')->label('Dibuat')->dateTime(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

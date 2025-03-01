@@ -18,6 +18,7 @@ class DataSiswaResource extends Resource
     protected static ?string $model = DataSiswa::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    
 
     public static function form(Form $form): Form
     {

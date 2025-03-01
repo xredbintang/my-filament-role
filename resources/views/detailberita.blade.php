@@ -9,7 +9,7 @@
 <body class="bg-gray-100 p-4">
     <h1 class="text-3xl font-bold">{{ $berita->berita_judul }}</h1>
     <p class="text-gray-500">{{ $berita->berita_tanggal }}</p>
-    <img src="{{ asset('storage/' . $berita->berita_gambar) }}" alt="{{ $berita->berita_judul }}" class="w-full my-4 rounded-lg">
+    <img src="{{ asset('storage/' . $berita->berita_gambar) }}" alt="{{ $berita->berita_judul }}" class="object-contain w-full max-w-[800px] h-[400px] my-4 rounded-lg">
     <div class="prose max-w-none">
         {!! nl2br(e($berita->berita_deskripsi)) !!}
     </div>

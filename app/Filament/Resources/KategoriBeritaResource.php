@@ -18,8 +18,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class KategoriBeritaResource extends Resource
 {
     protected static ?string $model = KategoriBerita::class;
-    protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-group';
     protected static ?string $navigationGroup = 'Berita';
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
@@ -36,15 +37,14 @@ class KategoriBeritaResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable(),
                 TextColumn::make('kategori_nama')->label('Nama Kategori')->sortable()->searchable(),
-                TextColumn::make('created_at')->label('Dibuat')->dateTime(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

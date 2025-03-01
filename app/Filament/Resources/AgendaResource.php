@@ -6,9 +6,12 @@ use App\Filament\Resources\AgendaResource\Pages;
 use App\Filament\Resources\AgendaResource\RelationManagers;
 use App\Models\Agenda;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -17,13 +20,20 @@ class AgendaResource extends Resource
 {
     protected static ?string $model = Agenda::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+    protected static ?string $navigationLabel = 'Agenda Sekolah';
+    protected static ?string $navigationGroup = 'Berita';
+    protected static ?int $navigationSort = 8;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                Section::make('Agenda Semester 1 dan 2')
+                ->schema([
+                    RichEditor::make('semester_pertama')->required()->label('Agenda Semester 1'),
+                    RichEditor::make('semester_kedua')->required()->label('Agenda Semester 2'),
+                ]),
             ]);
     }
 
@@ -31,13 +41,15 @@ class AgendaResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('semester_pertama')->label('Semester 1'),
+                TextColumn::make('semester_kedua')->label('Semester 2')
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -14,6 +14,16 @@ class Berita extends Model
 
     public function kategori()
     {
-        return $this->belongsTo(KategoriBerita::class, 'berita-kategori');
+        return $this->belongsTo(KategoriBerita::class, 'berita_kategori');
+    }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($berita) {
+            if (!$berita->berita_tanggal) {
+                $berita->berita_tanggal = now();
+            }
+        });
     }
 }

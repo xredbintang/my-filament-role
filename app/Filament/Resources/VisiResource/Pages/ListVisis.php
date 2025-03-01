@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\ClassResource\Pages;
+namespace App\Filament\Resources\VisiResource\Pages;
 
-use App\Filament\Resources\ClassResource;
+use App\Filament\Resources\VisiResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListClasses extends ListRecords
+class ListVisis extends ListRecords
 {
-    protected static string $resource = ClassResource::class;
+    protected static string $resource = VisiResource::class;
 
     protected function getHeaderActions(): array
     {
