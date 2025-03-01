@@ -10,7 +10,7 @@ class Berita extends Model
     use HasFactory;
 
     protected $table = 'berita'; 
-    protected $fillable = ['berita-judul', 'berita-kategori', 'berita-tanggal', 'berita-gambar', 'berita-deskripsi']; // Kolom yang bisa diisi
+    protected $fillable = ['berita_judul', 'berita_kategori', 'berita_tanggal', 'berita_gambar', 'berita_deskripsi']; 
 
     public function kategori()
     {
