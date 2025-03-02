@@ -38,11 +38,11 @@ class VisiResource extends Resource
                     ->label('Tujuan')
                     ->required(),
                     RichEditor::make('visi')
-                        ->label('Visi')
-                        ->required(),
-                        RichEditor::make('misi')
-                        ->label('Misi')
-                        ->required(),
+                    ->label('Visi')
+                    ->required(),
+                    RichEditor::make('misi')
+                    ->label('Misi')
+                    ->required(),
                 ]),
             ]);
     }

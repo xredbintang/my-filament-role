@@ -36,7 +36,7 @@ class KegiatanResource extends Resource
                 Section::make('Kegiatan')
                 ->schema([
                     TextInput::make('kegiatan_nama')->required()->label('Nama kegiatan'),
-                    FileUpload::make('kegiatan_gambar')->directory('kegiatan_img')->required()->label('Gambar kegiatan'),
+                    FileUpload::make('kegiatan_gambar')->directory('kegiatan_img')->image()->required()->label('Gambar kegiatan'),
                     Textarea::make('kegiatan_deskripsi')->required()->label('Deskripsi kegiatan'),
                 ]),
             ]);

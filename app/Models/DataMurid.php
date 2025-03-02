@@ -10,4 +10,7 @@ class DataMurid extends Model
     use HasFactory;
     protected $table = 'data_murid';
     protected $fillable = ['data_kelas','data_files'];
+    protected $casts = [
+        'data_files' => 'array',
+    ];
 }

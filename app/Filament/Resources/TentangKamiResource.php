@@ -30,7 +30,8 @@ class TentangKamiResource extends Resource
     {
         return $form
             ->schema([
-                FileUpload::make('gambar')->image()->directory('img')->preserveFilenames()->image()->required()->imageEditor(),
+                FileUpload::make('gambar')->image()->directory('img')
+                ->preserveFilenames()->image()->required()->imageEditor(),
                 RichEditor::make('deskripsi')->required()
             ]);
     }

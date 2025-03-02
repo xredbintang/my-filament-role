@@ -35,7 +35,7 @@ class GuruResource extends Resource
                 Section::make('Guru Tenaga Kependidikan')
                 ->schema([
                     TextInput::make('guru_nama')->required()->label('Nama Guru'),
-                    FileUpload::make('guru_gambar')->required()->label('Profil Guru')->directory('teacher_img'),
+                    FileUpload::make('guru_gambar')->required()->image()->label('Profil Guru')->directory('teacher_img'),
                     TextInput::make('guru_jabatan')->required()->label('Jabatan Guru'),
                 ]),
             ]);

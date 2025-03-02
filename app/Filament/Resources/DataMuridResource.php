@@ -8,9 +8,13 @@ use App\Models\DataMurid;
 use App\Models\DataSiswa;
 use App\Models\Guru;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -18,7 +22,6 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class DataMuridResource extends Resource
 {
     protected static ?string $model = DataMurid::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-document-duplicate';
     protected static ?string $navigationLabel = 'Data Murid Pdf';
     protected static ?string $navigationGroup = 'Data Murid';
@@ -28,7 +31,12 @@ class DataMuridResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Section::make('Data murid PDF')
+                ->schema([
+                    TextInput::make('data_kelas')->required(),
+                    FileUpload::make('data_files')->required()->directory('data_pdf')
+                    ->multiple()->acceptedFileTypes(['application/pdf']),
+                ]),
             ]);
     }
 
@@ -36,13 +44,14 @@ class DataMuridResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('data_kelas')->searchable()->sortable()
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

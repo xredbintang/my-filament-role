@@ -37,7 +37,7 @@ class PrestasiResource extends Resource
                 Section::make('Prestasi Murid')
                 ->schema([
                     TextInput::make('prestasi_nama')->required()->label('Nama Murid'),
-                    FileUpload::make('prestasi_gambar')->directory('prestasi_img')->required()->label('Gambar Murid'),
+                    FileUpload::make('prestasi_gambar')->directory('prestasi_img')->image()->required()->label('Gambar Murid'),
                     Textarea::make('prestasi_deskripsi')->required()->label('Deskripsi'),
                 ]),
             ]);

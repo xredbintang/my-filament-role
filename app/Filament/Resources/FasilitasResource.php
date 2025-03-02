@@ -35,7 +35,7 @@ class FasilitasResource extends Resource
                 Section::make('Fasilitas Sekolah')
                 ->schema([
                     TextInput::make('fasilitas_nama')->required()->label('Nama fasilitas'),
-                    FileUpload::make('fasilitas_gambar')->required()->label('Gambar fasilitas')->directory('fasilitas_img'),
+                    FileUpload::make('fasilitas_gambar')->image()->required()->label('Gambar fasilitas')->directory('fasilitas_img'),
                 ]),
             ]);
     }
